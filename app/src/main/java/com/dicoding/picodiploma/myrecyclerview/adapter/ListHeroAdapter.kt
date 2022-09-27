@@ -1,28 +1,29 @@
 package com.dicoding.picodiploma.myrecyclerview.adapter
 
+import android.app.Activity
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.app.ActivityOptionsCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.picodiploma.myrecyclerview.HeroActivity
 import com.dicoding.picodiploma.myrecyclerview.R
 import com.dicoding.picodiploma.myrecyclerview.model.Hero
-import android.app.Activity
-import androidx.core.app.ActivityOptionsCompat
-import androidx.core.util.Pair
 
 /**
  * Created by sidiqpermana on 10/28/16.
  */
 
-class ListHeroAdapter(private val listHero: ArrayList<Hero>) : RecyclerView.Adapter<ListHeroAdapter.ListViewHolder>() {
+class ListHeroAdapter(private val listHero: ArrayList<Hero>) :
+    RecyclerView.Adapter<ListHeroAdapter.ListViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
-        val view: View = LayoutInflater.from(parent.context).inflate(R.layout.item_row_hero, parent, false)
+        val view: View =
+            LayoutInflater.from(parent.context).inflate(R.layout.item_row_hero, parent, false)
         return ListViewHolder(view)
     }
 
@@ -48,7 +49,9 @@ class ListHeroAdapter(private val listHero: ArrayList<Hero>) : RecyclerView.Adap
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, HeroActivity::class.java)
                 intent.putExtra("Hero", hero)
-                itemView.context.startActivity(intent)
+                itemView.context.startActivity(intent,
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(itemView.context as Activity)
+                        .toBundle())
             }
         }
     }
