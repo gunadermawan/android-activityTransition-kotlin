@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.app.ActivityOptionsCompat
+import androidx.core.util.Pair
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.dicoding.picodiploma.myrecyclerview.HeroActivity
@@ -49,9 +50,14 @@ class ListHeroAdapter(private val listHero: ArrayList<Hero>) :
             itemView.setOnClickListener {
                 val intent = Intent(itemView.context, HeroActivity::class.java)
                 intent.putExtra("Hero", hero)
-                itemView.context.startActivity(intent,
-                    ActivityOptionsCompat.makeSceneTransitionAnimation(itemView.context as Activity)
-                        .toBundle())
+                val optionsCompat: ActivityOptionsCompat =
+                    ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        itemView.context as Activity,
+                        Pair(imgPhoto, "profile"),
+                        Pair(tvName, "name"),
+                        Pair(tvDescription, "description"),
+                    )
+                itemView.context.startActivity(intent, optionsCompat.toBundle())
             }
         }
     }

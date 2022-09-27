@@ -2,6 +2,7 @@
     <string name="app_name">My Application</string>
     <string name="heroes_name">Nama Pahlawan</string>
     <string name="description">Deskripsi</string>
+    <string name="iv_image_hero">image hero</string>
 
     <string-array name="data_name">
         <item>Ahmad Dahlan</item>
